@@ -1,16 +1,27 @@
-import * as React from "react";
-import { View, Text } from "react-native";
+import React from "react";
+import { StyleSheet, View } from "react-native";
+import DeckList from "./components/DeckList";
+import NewDeck from "./components/NewDeck";
+import DeckDetail from "./components/DeckDetail";
+import NewCard from "./components/NewCard";
+import Quiz from "./components/Quiz";
+import styled from "styled-components/native";
 
-export default function App() {
-  return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Text>Universal React with Expo</Text>
-    </View>
-  );
+const AppContainer = styled.View`
+  flex: 1;
+  background-color: #fff;
+  padding: 50px 20px 20px 20px;
+`;
+export default class App extends React.Component {
+  render() {
+    return (
+      <AppContainer>
+        {/* <DeckList /> */}
+        {/* <NewDeck /> */}
+        {/* <DeckDetail /> */}
+        {/* <NewCard /> */}
+        <Quiz />
+      </AppContainer>
+    );
+  }
 }

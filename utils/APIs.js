@@ -13,7 +13,7 @@ export async function getDecks() {
 
     return storeResults === null ? DATA : JSON.parse(storeResults);
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 }
 
@@ -23,7 +23,7 @@ export async function getDeck(id) {
 
     return JSON.parse(storeResults)[id];
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 }
 
@@ -39,7 +39,7 @@ export async function saveDeckTitle(title) {
       })
     );
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 }
 
@@ -51,7 +51,7 @@ export async function removeDeck(key) {
     delete data[key];
     AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(data));
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 }
 
@@ -68,7 +68,7 @@ export async function addCardToDeck(title, card) {
       })
     );
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 }
 
@@ -76,6 +76,6 @@ export async function resetDecks() {
   try {
     await AsyncStorage.removeItem(STORAGE_KEY);
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 }
