@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { View } from "react-native";
-import Deck from "./Deck";
-import ColoredButton from "./ColoredButton";
-import TransparentButton from "./TransparentButton";
+import Deck from "../components/Deck";
+import ColoredButton from "../components/ColoredButton";
+import TransparentButton from "../components/TransparentButton";
 import styled from "styled-components/native";
 
 const ViewContainer = styled.View`
@@ -12,6 +12,8 @@ const ViewContainer = styled.View`
 
 export class DeckDetail extends Component {
   render() {
+    const { navigation } = this.props;
+
     return (
       <ViewContainer>
         <Deck />
@@ -19,14 +21,14 @@ export class DeckDetail extends Component {
           <ColoredButton
             btnBackground={"white"}
             txtColor={"black"}
-            onPress={() => console.log("card added")}
+            onPress={() => navigation.navigate("AddCard")}
           >
             Add Card
           </ColoredButton>
           <ColoredButton
             btnBackground={"black"}
             txtColor={"white"}
-            onPress={() => console.log("quiz started")}
+            onPress={() => navigation.navigate("Quiz")}
           >
             Start Quiz
           </ColoredButton>

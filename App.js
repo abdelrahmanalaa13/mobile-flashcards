@@ -1,27 +1,25 @@
 import React from "react";
-import { StyleSheet, View } from "react-native";
-import DeckList from "./components/DeckList";
-import NewDeck from "./components/NewDeck";
-import DeckDetail from "./components/DeckDetail";
-import NewCard from "./components/NewCard";
-import Quiz from "./components/Quiz";
+
 import styled from "styled-components/native";
+import { StatusBar } from "expo-status-bar";
+import Navigation from "./navigation";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
 const AppContainer = styled.View`
   flex: 1;
   background-color: #fff;
-  padding: 50px 20px 20px 20px;
 `;
+// const isLoadingComplete = useLoadedAssets();
+// const colorScheme = useColorScheme();
 export default class App extends React.Component {
   render() {
     return (
-      <AppContainer>
-        {/* <DeckList /> */}
-        {/* <NewDeck /> */}
-        {/* <DeckDetail /> */}
-        {/* <NewCard /> */}
-        <Quiz />
-      </AppContainer>
+      <SafeAreaProvider>
+        <AppContainer>
+          <Navigation colorScheme={"light"} />
+          <StatusBar />
+        </AppContainer>
+      </SafeAreaProvider>
     );
   }
 }

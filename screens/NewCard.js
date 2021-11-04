@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Text, View, TextInput, StyleSheet } from "react-native";
-import ColoredButton from "./ColoredButton";
+import ColoredButton from "../components/ColoredButton";
 import styled from "styled-components/native";
 
 const TitleText = styled.Text`

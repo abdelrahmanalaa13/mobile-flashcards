@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Text, View, StyleSheet } from "react-native";
-import TransparentButton from "./TransparentButton";
-import ColoredButton from "./ColoredButton";
+import TransparentButton from "../components/TransparentButton";
+import ColoredButton from "../components/ColoredButton";
 import styled from "styled-components/native";
 
 const screen = {
