@@ -11,7 +11,6 @@ const CardText = styled.Text`
   color: black;
 `;
 const Deck = (props) => {
-  console.log('deckProp',props);
   const { deck } = props;
   return (
     <ViewContainer>

@@ -4,20 +4,18 @@ import React from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
-// import { useColorScheme } from "react-native";
 
-import Colors from "../constants/Colors";
+import Colors from "../utils/Colors";
 import DeckList from "../screens/DeckList";
 import NewDeck from "../screens/NewDeck";
 
 const BottomTab = createBottomTabNavigator();
-const colorScheme = "light";
 
 export default function BottomTabNavigator() {
   return (
     <BottomTab.Navigator
       initialRouteName="DeckTab"
-      screenOptions={{ tabBarActiveTintColor: Colors[colorScheme].tint }}
+      screenOptions={{ tabBarActiveTintColor: Colors.tint }}
     >
       <BottomTab.Screen
         name="Decks"

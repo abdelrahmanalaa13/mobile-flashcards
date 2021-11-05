@@ -5,6 +5,7 @@ import styled from "styled-components/native";
 import { addDeck } from "../actions";
 import { connect } from "react-redux";
 import { setDeckTitle } from "../utils/APIs";
+import Colors from "../utils/Colors";
 
 const TitleText = styled.Text`
   text-align: center;
@@ -13,8 +14,8 @@ const TitleText = styled.Text`
 
 const TextInputStyled = styled.TextInput`
   border-width: 2px;
-  border-color: gray;
-  background-color: #fff;
+  border-color: ${Colors.black};
+  background-color: ${Colors.white};
   padding-left: 10px;
   padding-right: 10px;
   border-radius: 5px;
@@ -51,8 +52,8 @@ export class NewDeck extends Component {
           />
         </View>
         <ColoredButton
-          btnBackground={"green"}
-          txtColor={"white"}
+          btnBackground={Colors.green}
+          txtColor={Colors.white}
           onPress={this.handleSubmit}
           disabled={this.state.text === ''}
         >

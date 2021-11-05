@@ -7,6 +7,7 @@ import styled from "styled-components/native";
 import { connect } from "react-redux";
 import { removeDeck } from "../actions";
 import { removeSavedDeck } from "../utils/APIs";
+import Colors from "../utils/Colors";
 const ViewContainer = styled.View`
   flex: 1;
   justify-content: space-around;
@@ -23,15 +24,14 @@ export class DeckDetail extends Component {
   };
   render() {
     const { navigation, deck } = this.props;
-    console.log("deck", deck);
     return (
       <ViewContainer>
         <Deck deck={deck} />
 
         <View>
           <ColoredButton
-            btnBackground={"white"}
-            txtColor={"black"}
+            btnBackground={Colors.white}
+            txtColor={Colors.black}
             onPress={() =>
               navigation.navigate("NewCard", { title: deck.title })
             }
@@ -41,8 +41,8 @@ export class DeckDetail extends Component {
           {deck?.questions?.length ? (
             <View>
               <ColoredButton
-                btnBackground={"black"}
-                txtColor={"white"}
+                btnBackground={Colors.green}
+                txtColor={Colors.white}
                 onPress={() =>
                   navigation.navigate("Quiz", { title: deck.title })
                 }
@@ -50,7 +50,7 @@ export class DeckDetail extends Component {
                 Start Quiz
               </ColoredButton>
               <TransparentButton
-                txtColor={"red"}
+                txtColor={Colors.red}
                 onPress={() => this.handleDelete(deck.title)}
               >
                 Delete Deck

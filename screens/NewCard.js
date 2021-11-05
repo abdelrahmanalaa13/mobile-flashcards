@@ -5,6 +5,7 @@ import styled from "styled-components/native";
 import { addQuestion } from "../actions/index";
 import { connect } from "react-redux";
 import { setCardToDeck } from "../utils/APIs";
+import Colors from "../utils/Colors";
 
 const TitleText = styled.Text`
   text-align: center;
@@ -13,8 +14,8 @@ const TitleText = styled.Text`
 
 const TextInputStyled = styled.TextInput`
   border-width: 2px;
-  border-color: gray;
-  background-color: #fff;
+  border-color: ${Colors.black};
+  background-color: ${Colors.white};
   padding-left: 10px;
   padding-right: 10px;
   border-radius: 5px;
@@ -35,7 +36,6 @@ export class NewCard extends Component {
   };
 
   handleSubmit = () => {
-    console.log("card", this.props);
     const { addQuestion, title, navigation } = this.props;
     const card = {
       question: this.state.question,
@@ -70,9 +70,10 @@ export class NewCard extends Component {
           </View>
         </View>
         <ColoredButton
-          btnBackground={"green"}
-          txtColor={"white"}
+          btnBackground={Colors.green}
+          txtColor={Colors.white}
           onPress={this.handleSubmit}
+          disabled={this.state.question === "" || this.state.answer === ""}
         >
           Submit
         </ColoredButton>
@@ -82,7 +83,6 @@ export class NewCard extends Component {
 }
 
 const mapStateToProps = (state, { route }) => {
-  console.log("route", route);
   const title = route.params.title;
   return {
     title,

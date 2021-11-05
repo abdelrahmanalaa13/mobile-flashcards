@@ -1,11 +1,7 @@
 // If you are not familiar with React Navigation, check out the "Fundamentals" guide:
 // https://reactnavigation.org/docs/getting-started
 import React from "react";
-import {
-  DarkTheme,
-  DefaultTheme,
-  NavigationContainer,
-} from "@react-navigation/native";
+import { DefaultTheme, NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
 // import NotFoundScreen from "../screens/NotFoundScreen";
@@ -16,12 +12,9 @@ import DeckDetail from "../screens/DeckDetail";
 import NewCard from "../screens/NewCard";
 import Quiz from "../screens/Quiz";
 
-export default function Navigation({ colorScheme }) {
+export default function Navigation() {
   return (
-    <NavigationContainer
-      linking={LinkingConfiguration}
-      theme={colorScheme === "dark" ? DarkTheme : DefaultTheme}
-    >
+    <NavigationContainer linking={LinkingConfiguration} theme={DefaultTheme}>
       <RootNavigator />
     </NavigationContainer>
   );
@@ -33,7 +26,9 @@ const Stack = createStackNavigator();
 
 function RootNavigator() {
   return (
-    <Stack.Navigator screenOptions={{ headerShown: true, headerTitleAlign: "center" }}>
+    <Stack.Navigator
+      screenOptions={{ headerShown: true, headerTitleAlign: "center" }}
+    >
       <Stack.Screen name="Home" component={BottomTabNavigator} />
       <Stack.Screen name="NewDeck" component={NewDeck} />
       <Stack.Screen name="DeckDetail" component={DeckDetail} />

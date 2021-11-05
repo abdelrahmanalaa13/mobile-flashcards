@@ -5,6 +5,7 @@ import ColoredButton from "../components/ColoredButton";
 import styled from "styled-components/native";
 import { connect } from "react-redux";
 import { clearLocalNotification, setLocalNotification } from "../utils/helper";
+import Colors from "../utils/Colors";
 const answerTypes = {
   CORRECT: "correct",
   INCORRECT: "incorrect",
@@ -109,14 +110,14 @@ export class Quiz extends Component {
             </View>
             {!isAnswerScreen ? (
               <TransparentButton
-                txtColor={"#0000ff"}
+                txtColor={Colors.blue}
                 onPress={() => this.setState({ isAnswerScreen: true })}
               >
                 Show Answer
               </TransparentButton>
             ) : (
               <TransparentButton
-                txtColor={"#0000ff"}
+                txtColor={Colors.blue}
                 onPress={() => this.setState({ isAnswerScreen: false })}
               >
                 Show Question
@@ -125,8 +126,8 @@ export class Quiz extends Component {
           </View>
           <View>
             <ColoredButton
-              btnBackground={"#00ff00"}
-              txtColor={"#ffffff"}
+              btnBackground={Colors.green}
+              txtColor={Colors.white}
               onPress={() =>
                 this.handleAnswer(answerTypes.CORRECT, currentQuestionIndex)
               }
@@ -135,8 +136,8 @@ export class Quiz extends Component {
               Correct
             </ColoredButton>
             <ColoredButton
-              btnBackground={"#ff0000"}
-              txtColor={"#ffffff"}
+              btnBackground={Colors.red}
+              txtColor={Colors.white}
               onPress={() =>
                 this.handleAnswer(answerTypes.INCORRECT, currentQuestionIndex)
               }
@@ -166,22 +167,21 @@ export class Quiz extends Component {
           </View>
           <View>
             <ColoredButton
-              btnBackground={"#00ff00"}
-              txtColor={"#ffffff"}
+              btnBackground={Colors.green}
+              txtColor={Colors.white}
               onPress={this.handleReset}
             >
               Restart Quiz
             </ColoredButton>
-            <ColoredButton
-              btnBackground={"gray"}
-              txtColor={"#ffffff"}
+            <TransparentButton
+              txtColor={Colors.tint}
               onPress={() => {
                 this.handleReset();
                 this.props.navigation.navigate("Home");
               }}
             >
               Go Home
-            </ColoredButton>
+            </TransparentButton>
           </View>
         </ViewContainer>
       );

@@ -10,10 +10,11 @@ import logger from "redux-logger";
 import { Provider } from "react-redux";
 import reducer from "./reducers/index";
 import { setLocalNotification } from "./utils/helper";
+import Colors from "./utils/Colors";
 
 const AppContainer = styled.View`
   flex: 1;
-  background-color: #fff;
+  background-color: ${Colors.white};
 `;
 // const isLoadingComplete = useLoadedAssets();
 // const colorScheme = useColorScheme();
@@ -27,7 +28,7 @@ export default class App extends React.Component {
       <SafeAreaProvider>
         <Provider store={store}>
           <AppContainer>
-            <Navigation colorScheme={"light"} />
+            <Navigation />
             <StatusBar />
           </AppContainer>
         </Provider>

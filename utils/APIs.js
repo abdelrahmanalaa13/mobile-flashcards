@@ -92,7 +92,7 @@ export async function setDeckTitle(title) {
       })
     );
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 }
 
@@ -109,7 +109,7 @@ export async function setCardToDeck(title, card) {
       })
     );
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 }
 
@@ -121,6 +121,6 @@ export async function removeSavedDeck(key) {
     delete data[key];
     AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(data));
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 }
