@@ -9,6 +9,7 @@ import thunk from "redux-thunk";
 import logger from "redux-logger";
 import { Provider } from "react-redux";
 import reducer from "./reducers/index";
+import { setLocalNotification } from "./utils/helper";
 
 const AppContainer = styled.View`
   flex: 1;
@@ -18,6 +19,9 @@ const AppContainer = styled.View`
 // const colorScheme = useColorScheme();
 const store = createStore(reducer, applyMiddleware(thunk, logger));
 export default class App extends React.Component {
+  componentDidMount() {
+    setLocalNotification();
+  }
   render() {
     return (
       <SafeAreaProvider>

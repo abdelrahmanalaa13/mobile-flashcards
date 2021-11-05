@@ -4,7 +4,7 @@ import TransparentButton from "../components/TransparentButton";
 import ColoredButton from "../components/ColoredButton";
 import styled from "styled-components/native";
 import { connect } from "react-redux";
-
+import { clearLocalNotification, setLocalNotification } from "../utils/helper";
 const answerTypes = {
   CORRECT: "correct",
   INCORRECT: "incorrect",
@@ -76,6 +76,7 @@ export class Quiz extends Component {
         }
       }
     );
+    clearLocalNotification().then(setLocalNotification);
   };
   render() {
     const { questions } = this.props;
