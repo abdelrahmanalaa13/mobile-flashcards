@@ -6,6 +6,7 @@ import TransparentButton from "../components/TransparentButton";
 import styled from "styled-components/native";
 import { connect } from "react-redux";
 import { removeDeck } from "../actions";
+import { removeSavedDeck } from "../utils/APIs";
 const ViewContainer = styled.View`
   flex: 1;
   justify-content: space-around;
@@ -16,15 +17,17 @@ export class DeckDetail extends Component {
     return nextProps.deck !== undefined;
   }
   handleDelete = (id) => {
+    removeSavedDeck(id);
     this.props.removeDeck(id);
     this.props.navigation.goBack();
   };
   render() {
     const { navigation, deck } = this.props;
-    console.log('deck', deck);
+    console.log("deck", deck);
     return (
       <ViewContainer>
-        {/* <Deck deck={deck} /> */}
+        <Deck deck={deck} />
+
         <View>
           <ColoredButton
             btnBackground={"white"}
@@ -35,19 +38,25 @@ export class DeckDetail extends Component {
           >
             Add Card
           </ColoredButton>
-          <ColoredButton
-            btnBackground={"black"}
-            txtColor={"white"}
-            onPress={() => navigation.navigate("Quiz", { title: deck.title })}
-          >
-            Start Quiz
-          </ColoredButton>
-          <TransparentButton
-            txtColor={"red"}
-            onPress={() => this.handleDelete(deck.title)}
-          >
-            Delete Deck
-          </TransparentButton>
+          {deck?.questions?.length ? (
+            <View>
+              <ColoredButton
+                btnBackground={"black"}
+                txtColor={"white"}
+                onPress={() =>
+                  navigation.navigate("Quiz", { title: deck.title })
+                }
+              >
+                Start Quiz
+              </ColoredButton>
+              <TransparentButton
+                txtColor={"red"}
+                onPress={() => this.handleDelete(deck.title)}
+              >
+                Delete Deck
+              </TransparentButton>
+            </View>
+          ) : null}
         </View>
       </ViewContainer>
     );

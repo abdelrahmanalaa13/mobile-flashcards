@@ -4,6 +4,7 @@ import ColoredButton from "../components/ColoredButton";
 import styled from "styled-components/native";
 import { addQuestion } from "../actions/index";
 import { connect } from "react-redux";
+import { setCardToDeck } from "../utils/APIs";
 
 const TitleText = styled.Text`
   text-align: center;
@@ -40,7 +41,7 @@ export class NewCard extends Component {
       question: this.state.question,
       answer: this.state.answer,
     };
-
+    setCardToDeck(title, card);
     addQuestion(title, card);
     this.setState({ question: "", answer: "" });
     navigation.goBack();

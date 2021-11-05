@@ -4,6 +4,7 @@ import ColoredButton from "../components/ColoredButton";
 import styled from "styled-components/native";
 import { addDeck } from "../actions";
 import { connect } from "react-redux";
+import { setDeckTitle } from "../utils/APIs";
 
 const TitleText = styled.Text`
   text-align: center;
@@ -31,7 +32,7 @@ export class NewDeck extends Component {
   };
   handleSubmit = () => {
     const { addDeck, navigation } = this.props;
-
+    setDeckTitle(text);
     addDeck(this.state.text);
     this.setState(() => ({ text: "" }));
     navigation.goBack();
