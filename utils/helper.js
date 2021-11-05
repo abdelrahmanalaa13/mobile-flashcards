@@ -6,7 +6,7 @@ const NOTIFICATION_KEY = "FlashCards:notifications";
 
 export function clearLocalNotification() {
   return AsyncStorage.removeItem(NOTIFICATION_KEY).then(
-    Notifications.cancelAllScheduledNotificationsAsync
+    Notifications.cancelAllScheduledNotificationsAsync()
   );
 }
 
@@ -40,7 +40,7 @@ export function setLocalNotification() {
             tomorrow.setHours(20);
             tomorrow.setMinutes(0);
 
-            Notifications.scheduleLocalNotificationAsync(createNotification(), {
+            Notifications.scheduleNotificationAsync(createNotification(), {
               time: tomorrow,
               repeat: "day",
             });

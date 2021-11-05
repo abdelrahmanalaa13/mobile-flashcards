@@ -1,6 +1,31 @@
 {
   "expo": {
     "name": "Mobile Flash Cards",
-    "slug": "mobile-flash-cards"
+    "slug": "mobile-flash-cards",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./fav.png",
+    "scheme": "testing",
+    "splash": {
+      "image": "./fav.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./fav.png",
+        "backgroundColor": "#FFFFFF"
+      }
+    },
+    "web": {
+      "favicon": "./fav.png"
+    }
   }
 }
