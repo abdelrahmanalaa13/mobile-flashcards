@@ -3,7 +3,6 @@ import * as Notifications from "expo-notifications";
 
 const NOTIFICATION_KEY = "FlashCards:notifications";
 
-
 export function clearLocalNotification() {
   return AsyncStorage.removeItem(NOTIFICATION_KEY).then(
     Notifications.cancelAllScheduledNotificationsAsync()
@@ -14,15 +13,6 @@ function createNotification() {
   return {
     title: "Take your Quiz!",
     body: "👋 don't forget to take your Quiz today!",
-    ios: {
-      sound: true,
-    },
-    android: {
-      sound: true,
-      priority: "high",
-      sticky: false,
-      vibrate: true,
-    },
   };
 }
 
@@ -31,23 +21,29 @@ export function setLocalNotification() {
     .then(JSON.parse)
     .then((data) => {
       if (data === null) {
-        Notifications.requestPermissionsAsync("notifications").then(({ status }) => {
-          if (status === "granted") {
-            Notifications.cancelAllScheduledNotificationsAsync();
+        Notifications.requestPermissionsAsync("notifications").then(
+          ({ status }) => {
+            if (status === "granted") {
+              Notifications.cancelAllScheduledNotificationsAsync();
 
-            let tomorrow = new Date();
-            tomorrow.setDate(tomorrow.getDate() + 1);
-            tomorrow.setHours(20);
-            tomorrow.setMinutes(0);
+              const tomorrow = new Date();
+              tomorrow.setDate(tomorrow.getDate() + 1);
+              tomorrow.setHours(20);
+              tomorrow.setMinutes(0);
 
-            Notifications.scheduleNotificationAsync(createNotification(), {
-              time: tomorrow,
-              repeat: "day",
-            });
+              Notifications.scheduleNotificationAsync({
+                content: createNotification(),
+                trigger: {
+                  hour: 23,
+                  minute: 59,
+                  repeats: true,
+                },
+              });
 
-            AsyncStorage.setItem(NOTIFICATION_KEY, JSON.stringify(true));
+              AsyncStorage.setItem(NOTIFICATION_KEY, JSON.stringify(true));
+            }
           }
-        });
+        );
       }
     });
 }

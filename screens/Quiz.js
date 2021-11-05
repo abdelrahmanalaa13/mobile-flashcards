@@ -53,7 +53,7 @@ export class Quiz extends Component {
     });
   };
 
-  handleAnswer = (response, page) => {
+  handleAnswer = (response, index) => {
     if (response === answerTypes.CORRECT) {
       this.setState((prevState) => ({
         correctScore: prevState.correctScore + 1,
@@ -61,8 +61,8 @@ export class Quiz extends Component {
     }
     this.setState(
       (prevState) => ({
-        answered: prevState.answered.map((val, idx) =>
-          page === idx ? 1 : val
+        answered: prevState.answered.map((value, id) =>
+        index === id ? true : value
         ),
       }),
       () => {
@@ -77,7 +77,7 @@ export class Quiz extends Component {
         }
       }
     );
-    clearLocalNotification().then(setLocalNotification);
+    clearLocalNotification().then(setLocalNotification());
   };
   render() {
     const { questions } = this.props;

@@ -26,6 +26,15 @@
     },
     "web": {
       "favicon": "./fav.png"
-    }
+    },
+    "plugins": [
+      [
+        "expo-notifications",
+        {
+          "icon": "./fav.png",
+          "mode": "production"
+        }
+      ]
+    ]
   }
 }
