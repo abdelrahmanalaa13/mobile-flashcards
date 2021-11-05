@@ -1,4 +1,4 @@
-const DATA = {
+export const DATA = {
   React: {
     title: "React",
     questions: [
@@ -23,5 +23,3 @@ const DATA = {
     ],
   },
 };
-
-export default DATA;

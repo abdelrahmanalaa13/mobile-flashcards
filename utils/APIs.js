@@ -1,4 +1,4 @@
-import { AsyncStorage } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { DATA } from "./_DATA";
 
 const STORAGE_KEY = "DEACKS";
@@ -6,12 +6,12 @@ const STORAGE_KEY = "DEACKS";
 export async function getDecks() {
   try {
     const storeResults = await AsyncStorage.getItem(STORAGE_KEY);
-
-    if (storeResults === null) {
+    if (storeResults) {
+      return JSON.parse(storeResults);
+    } else {
       AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(DATA));
+      return DATA;
     }
-
-    return storeResults === null ? DATA : JSON.parse(storeResults);
   } catch (err) {
     console.error(err);
   }
@@ -47,7 +47,7 @@ export async function removeDeck(key) {
   try {
     const results = await AsyncStorage.getItem(STORAGE_KEY);
     const data = JSON.parse(results);
-    data[key] = undefined;
+    data[key] = null;
     delete data[key];
     AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(data));
   } catch (err) {

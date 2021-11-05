@@ -2,30 +2,41 @@ import React, { Component } from "react";
 import { Text, View, StyleSheet, TextInput } from "react-native";
 import ColoredButton from "../components/ColoredButton";
 import styled from "styled-components/native";
+import { addDeck } from "../actions";
+import { connect } from "react-redux";
 
 const TitleText = styled.Text`
   text-align: center;
-  font-size: 32;
+  font-size: 32px;
 `;
 
 const TextInputStyled = styled.TextInput`
-  border-width: 2;
+  border-width: 2px;
   border-color: gray;
   background-color: #fff;
   padding-left: 10px;
   padding-right: 10px;
-  border-radius: 5;
-  font-size: 20;
-  height: 40;
+  border-radius: 5px;
+  font-size: 20px;
+  height: 40px;
 `;
 
 export class NewDeck extends Component {
   state = {
     text: "",
   };
+
   handleChange = (text) => {
     this.setState({ text });
   };
+  handleSubmit = () => {
+    const { addDeck, navigation } = this.props;
+
+    addDeck(this.state.text);
+    this.setState(() => ({ text: "" }));
+    navigation.goBack();
+  };
+
   render() {
     return (
       <View>
@@ -41,7 +52,8 @@ export class NewDeck extends Component {
         <ColoredButton
           btnBackground={"green"}
           txtColor={"white"}
-          onPress={() => console.log("create")}
+          onPress={this.handleSubmit}
+          disabled={this.state.text === ''}
         >
           Create Deck
         </ColoredButton>
@@ -50,4 +62,4 @@ export class NewDeck extends Component {
   }
 }
 
-export default NewDeck;
+export default connect(null, { addDeck })(NewDeck);

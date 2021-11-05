@@ -2,21 +2,23 @@ import React, { Component } from "react";
 import { Text, View, TextInput, StyleSheet } from "react-native";
 import ColoredButton from "../components/ColoredButton";
 import styled from "styled-components/native";
+import { addQuestion } from "../actions/index";
+import { connect } from "react-redux";
 
 const TitleText = styled.Text`
   text-align: center;
-  font-size: 32;
+  font-size: 32px;
 `;
 
 const TextInputStyled = styled.TextInput`
-  border-width: 2;
+  border-width: 2px;
   border-color: gray;
   background-color: #fff;
   padding-left: 10px;
   padding-right: 10px;
-  border-radius: 5;
-  font-size: 20;
-  height: 40;
+  border-radius: 5px;
+  font-size: 20px;
+  height: 40px;
 `;
 
 export class NewCard extends Component {
@@ -25,11 +27,25 @@ export class NewCard extends Component {
     answer: "",
   };
   handleQuestionChange = (question) => {
-    this.setState({ q });
+    this.setState({ question });
   };
-  handleAnswerChange = (a) => {
-    this.setState({ a });
+  handleAnswerChange = (answer) => {
+    this.setState({ answer });
   };
+
+  handleSubmit = () => {
+    console.log("card", this.props);
+    const { addQuestion, title, navigation } = this.props;
+    const card = {
+      question: this.state.question,
+      answer: this.state.answer,
+    };
+
+    addQuestion(title, card);
+    this.setState({ question: "", answer: "" });
+    navigation.goBack();
+  };
+
   render() {
     return (
       <View>
@@ -55,7 +71,7 @@ export class NewCard extends Component {
         <ColoredButton
           btnBackground={"green"}
           txtColor={"white"}
-          onPress={() => console.log("card added")}
+          onPress={this.handleSubmit}
         >
           Submit
         </ColoredButton>
@@ -64,4 +80,11 @@ export class NewCard extends Component {
   }
 }
 
-export default NewCard;
+const mapStateToProps = (state, { route }) => {
+  console.log("route", route);
+  const title = route.params.title;
+  return {
+    title,
+  };
+};
+export default connect(mapStateToProps, { addQuestion })(NewCard);

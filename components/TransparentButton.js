@@ -10,10 +10,10 @@ export default function TransparentButton({
 }) {
   const ButtonViewContainer = styled.View`
     align-items: center;
-    margin-bottom: 20;
+    margin-bottom: 20px;
   `;
   const ButtonText = styled.Text`
-    font-size: 20;
+    font-size: 20px;
     font-weight: bold;
     color: ${txtColor};
   `;
