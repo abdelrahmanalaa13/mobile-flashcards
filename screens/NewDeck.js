@@ -33,7 +33,7 @@ export class NewDeck extends Component {
   };
   handleSubmit = () => {
     const { addDeck, navigation } = this.props;
-    setDeckTitle(text);
+    setDeckTitle(this.state.text);
     addDeck(this.state.text);
     this.setState(() => ({ text: "" }));
     navigation.goBack();
